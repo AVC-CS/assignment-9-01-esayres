@@ -15,16 +15,24 @@ struct Student
 void makeStudent(Student *student);
 void printStudent(Student *head);
 
-void makeStudent(Student *student)
-{
-    /*******************************
-     * Code your program here
-     *******************************/
+void makeStudent(Student *student){
+    ifstream file;
+    file.open("students.txt");
+    if(!file){
+        cerr << "FAILED TO OPEN FILE" << endl;
+        exit(0);
+    }
+
+    // pointer notation for Struct
+    for(int i = 0; i < N; i++){
+        file >> (student + i)->id >> (student + i)->name >> (student + i)->major;
+    }
 }
 void printStudent(Student *student)
 {
     cout << endl;
-    /*******************************
-     * Code your program here
-     *******************************/
+    for(int i = 0; i < N; i++){
+        cout << (student + i)->id << ' ' <<
+        (student + i)->name << ' ' << (student + i)->major << endl;;
+    }
 }
